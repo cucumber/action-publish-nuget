@@ -36,5 +36,5 @@ jobs:
         uses: cucumber/action-publish-nuget@v1.0.0
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-          working-directory: "java"
+          working-directory: "dotnet"
 ```
