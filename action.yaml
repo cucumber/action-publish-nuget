@@ -21,7 +21,7 @@ runs:
       shell: bash
       working-directory: ${{ inputs.working-directory }}
     - name: Push
-      run: dotnet nuget push NuGetOut/*.nupkg --api-key ${NUGET_API_KEY}
+      run: dotnet nuget push NuGetOut/*.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
       shell: bash
       working-directory: ${{ inputs.working-directory }}
       env:
