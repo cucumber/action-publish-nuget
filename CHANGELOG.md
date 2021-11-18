@@ -10,4 +10,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Publish to NuGet.org from a given `working-directory`
 
-[Unreleased]: https://github.com/cucumber/action-publish-mvn/compare/v0.0.0...HEAD
+[Unreleased]: https://github.com/cucumber/action-publish-mvn/compare/8a8a56821e651927b0a0e3a164841a2aebf5ba3c...HEAD
