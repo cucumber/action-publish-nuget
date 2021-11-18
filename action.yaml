@@ -1,0 +1,29 @@
+name: 'Publish to NuGet.org'
+description: 'Publish a .NET package to NuGet.org'
+inputs:
+  nuget-api-key:
+    description: NuGet API Key
+    required: true
+  working-directory:
+    description: "Path within the repo to the folder where the .NET project lives"
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build
+      run: dotnet build --configuration Release
+      working-directory: ${{ inputs.working-directory }}
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output NuGetOut
+      working-directory: ${{ inputs.working-directory }}
+    - name: Push
+      run: dotnet nuget push NuGetOut/*.nupkg --api-key ${NUGET_API_KEY}
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+branding:
+  icon: package
+  color: green
