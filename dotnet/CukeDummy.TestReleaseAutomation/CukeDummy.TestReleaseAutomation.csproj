@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Package Properties">
+		<Product>CukeDummy.TestReleaseAutomation</Product>
+		<PackageId>CukeDummy.TestReleaseAutomation</PackageId>
+		<Authors>Cucumber Ltd, Gaspar Nagy</Authors>
+		<Copyright>Copyright © Cucumber Ltd, Gaspar Nagy</Copyright>
+		<Description>Dummy package to test release automation scripts</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageOutputPath>bin/$(Configuration)/NuGet</PackageOutputPath>
+	</PropertyGroup>
+
+</Project>
