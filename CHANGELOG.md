@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-01-04
 ### Added
 - Publish to NuGet.org from a given `working-directory`
 
-[Unreleased]: https://github.com/cucumber/action-publish-mvn/compare/8a8a56821e651927b0a0e3a164841a2aebf5ba3c...HEAD
+[Unreleased]: https://github.com/cucumber/action-publish-nuget/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/cucumber/action-publish-nuget/compare/8a8a56821e651927b0a0e3a164841a2aebf5ba3c...v1.0.0
