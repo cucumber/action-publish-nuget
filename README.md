@@ -14,7 +14,7 @@ Needs .NET to be installed first.
 ## Example
 
 ```yaml
-name: Publish
+name: Release NuGet
 
 on:
   push:
@@ -22,7 +22,7 @@ on:
       - "release/*"
 
 jobs:
-  publish-dotnet-nuget:
+  publish-nuget:
     name: Publish package to NuGet.org
     runs-on: ubuntu-latest
     environment: Release
@@ -32,8 +32,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      - name: Test the action
-        uses: cucumber/action-publish-nuget@v1.0.0
+      - uses: cucumber/action-publish-nuget@v1.0.0
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           working-directory: "dotnet"
