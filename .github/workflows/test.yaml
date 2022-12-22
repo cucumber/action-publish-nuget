@@ -1,10 +1,14 @@
 name: Test
 
 on:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
-      - renovate/*
+      - renovate/**
 
 jobs:
   test-publish-nuget:
@@ -12,15 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: Publish to NuGet.org
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
       - name: Set unique package version
         run: echo "VERSION=0.0.${GITHUB_RUN_NUMBER}-pre" >> $GITHUB_ENV
-        working-directory: "dotnet"
+        working-directory: "test"
       - name: Test the action
         uses: ./
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-          working-directory: dotnet
+          working-directory: "test"
