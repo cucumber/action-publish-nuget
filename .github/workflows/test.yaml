@@ -17,7 +17,7 @@ jobs:
     environment: Publish to NuGet.org
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
       - name: Set unique package version
