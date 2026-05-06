@@ -1,10 +1,9 @@
 name: 'Publish to NuGet.org'
 description: 'Publish a .NET package to NuGet.org'
 inputs:
-  nuget-user:
-    description: NuGet User
-    required: false
-    default: "cukebot"
+  nuget-api-key:
+    description: NuGet API Key
+    required: true
   working-directory:
     description: "Path within the repo to the folder where the .NET project lives"
     required: false
@@ -21,17 +20,12 @@ runs:
       run: dotnet pack --configuration Release --no-build --output NuGetOut
       shell: bash
       working-directory: ${{ inputs.working-directory }}
-    - name: NuGet login (OIDC → temp API key)
-      uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
-      id: login
-      with:
-        user: ${{ inputs.nuget-user }}
     - name: Push
-      run: dotnet nuget push NuGetOut/*.nupkg --api-key "${NUGET_API_KEY}" --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push NuGetOut/*.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
       shell: bash
       working-directory: ${{ inputs.working-directory }}
       env:
-        NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        NUGET_API_KEY: ${{ inputs.nuget-api-key }}
 
 branding:
   icon: package
