@@ -2,7 +2,7 @@
 
 # action-publish-nuget
 
-Publishes a .NET package to [NuGet.org](https://nuget.org/)
+Publishes a .NET package to [NuGet.org](https://nuget.org/) using [trusted publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing).
 
 Needs .NET to be installed first.
 
@@ -26,14 +26,21 @@ jobs:
     name: Publish package to NuGet.org
     runs-on: ubuntu-latest
     environment: Release
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
-      - uses: cucumber/action-publish-nuget@v1.0.0
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1.2.0
+        id: login
         with:
-          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          user: ${{ secrets.NUGET_USER }}
+      - uses: cucumber/action-publish-nuget@v2.0.0
+        with:
+          nuget-api-key: ${{ steps.login.outputs.NUGET_API_KEY }}
           working-directory: "dotnet"
 ```
