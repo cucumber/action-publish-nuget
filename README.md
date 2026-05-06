@@ -26,6 +26,8 @@ jobs:
     name: Publish package to NuGet.org
     runs-on: ubuntu-latest
     environment: Release
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
