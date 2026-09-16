@@ -24,7 +24,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 10.0.x
       - name: Set unique package version
         run: echo "VERSION=0.0.${GITHUB_RUN_NUMBER}-pre" >> $GITHUB_ENV
         working-directory: "test"
